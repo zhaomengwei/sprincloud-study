@@ -5,10 +5,7 @@ import com.gxs.springcloud.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +26,9 @@ public class DeptController {
     public boolean addDept(@RequestBody DeptEntity deptEntity) {
         return   deptService.addDept(deptEntity);
     }
+
     @RequestMapping(value = "/dept/findById/{deptNo}",method = RequestMethod.GET)
-    public DeptEntity findById(Long deptNo) {
+    public DeptEntity findById(@PathVariable("deptNo") Long deptNo) {
         return  deptService.findById(deptNo);
     }
 

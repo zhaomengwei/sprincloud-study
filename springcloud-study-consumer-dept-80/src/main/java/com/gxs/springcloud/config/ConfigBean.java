@@ -23,7 +23,7 @@ public class ConfigBean {
      * @return
      */
     @Bean
-    @LoadBalanced
+    @LoadBalanced  //使用 http://localhost:8001 发送时不能加这个注解
     public  RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
