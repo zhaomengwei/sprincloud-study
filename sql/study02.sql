@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : 本地mysql
 Source Server Version : 50722
 Source Host           : localhost:3306
-Source Database       : study
+Source Database       : study02
 
 Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-03-31 01:22:35
+Date: 2019-03-31 01:22:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `dept` (
 -- ----------------------------
 -- Records of dept
 -- ----------------------------
-INSERT INTO `dept` VALUES ('1', '开发部', '01');
-INSERT INTO `dept` VALUES ('2', 'womende', 'study');
-INSERT INTO `dept` VALUES ('4', '销售部', 'study');
-INSERT INTO `dept` VALUES ('5', '网络部', 'study');
+INSERT INTO `dept` VALUES ('1', '开发部', 'study02');
+INSERT INTO `dept` VALUES ('2', 'womende', 'study02');
+INSERT INTO `dept` VALUES ('4', '销售部', 'study02');
+INSERT INTO `dept` VALUES ('5', '网络部', 'study02');

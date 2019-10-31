@@ -23,14 +23,14 @@ public class ConfigBean {
      * @return
      */
     @Bean
-    @LoadBalanced  //使用 http://localhost:8001 发送时不能加这个注解
+    @LoadBalanced  //使用@LoadBalanced注解赋予RestTemplate负载均衡的能力 默认轮询
     public  RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
 
     @Bean
     public IRule myRule(){
-        //用我们选择的随机算法
+        //指定LoadBalanced的算法 用自带的随机算法
         return new RandomRule();
     }
 
