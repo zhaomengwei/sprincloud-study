@@ -6,19 +6,23 @@ import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author GongXings
  * @createTime 31 2:18
- * @description
+ * @description 依旧是轮询策略，但是加上新需求，每个服务器要求被调用5次。（也就是以前是每台服务器一次，现在是每台服务器5次）
  */
 public class MyRandomRule extends AbstractLoadBalancerRule {
-    Random rand;
+//    Random rand;
+//
+//    public MyRandomRule() {
+//        rand = new Random();
+//    }
 
-    public MyRandomRule() {
-        rand = new Random();
-    }
+    //当total等于5以后，指针才往下走
+    private int total = 0;
+    //total达到5次后，重新置为0，然后指针往下走，index=1
+    private int index = 0;//也就是euraka中的第几个服务
 
     /**
      * Randomly choose from all living servers
@@ -34,10 +38,10 @@ public class MyRandomRule extends AbstractLoadBalancerRule {
             if (Thread.interrupted()) {
                 return null;
             }
-            List<Server> upList = lb.getReachableServers();
-            List<Server> allList = lb.getAllServers();
+            List<Server> upList = lb.getReachableServers();//得到现在活着的所有服务器
+            List<Server> allList = lb.getAllServers();//得到euraka中所有的服务
 
-            int serverCount = allList.size();
+            int serverCount = allList.size();//所有服务的个数
             if (serverCount == 0) {
                 /*
                  * No servers. End regardless of pass, because subsequent passes
@@ -46,8 +50,21 @@ public class MyRandomRule extends AbstractLoadBalancerRule {
                 return null;
             }
 
-            int index = rand.nextInt(serverCount);
-            server = upList.get(index);
+            //从所有服务中随机获取一个
+//            int index = rand.nextInt(serverCount);//相当于java.util.Random.nextInt(3);
+            //找到随机获取的那个服务器返回
+//            server = upList.get(index);
+
+            if(total<5){
+                server = upList.get(index);
+                total++;
+            }else{
+                total = 0;
+                index++;
+                if(index >= upList.size()){
+                    index = 0;
+                }
+            }
 
             if (server == null) {
                 /*
