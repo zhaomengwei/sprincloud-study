@@ -9,11 +9,13 @@ import java.util.List;
 /**
  * @author GongXings
  * @createTime 31 14:52
- * @description 统一处理DeptClientService这个类中的熔断
+ * @description 统一处理DeptClientService这个类中的熔断，主业务与熔断方法解耦
  */
-//@Component 不要忘记添加
+//@Component 不要忘记添加，不要忘记添加
 @Component
 public class DeptClientServiceFallBackFactory implements FallbackFactory<DeptClientService> {
+
+    //统一对我们的接口DeptClientService处理熔断
     @Override
     public DeptClientService create(Throwable throwable) {
 
@@ -27,7 +29,7 @@ public class DeptClientServiceFallBackFactory implements FallbackFactory<DeptCli
             @Override
             public DeptEntity findById(Long deptNo) {
                return new DeptEntity().setDeptNo(deptNo)
-                        .setDeptName("该deptNo没有对应的信息，Consumer客户端提供的降级信息，此刻服务provider已经关闭")
+                        .setDeptName("该："+deptNo+"没有对应的信息，Consumer客户端提供的降级信息，此刻服务provider已经关闭")
                         .setDbSource("没有这个数据库");
             }
 
