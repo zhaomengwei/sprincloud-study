@@ -12,7 +12,11 @@ import java.util.List;
  * @createTime 31 11:54
  * @description
  */
-@FeignClient(value = "STUDY-SPRINGCLOUD-DEPT",fallbackFactory = DeptClientServiceFallBackFactory.class)
+//fallbackFactory：集成Hystrix服务降级
+//@FeignClient(value = "STUDY-SPRINGCLOUD-DEPT",fallbackFactory = DeptClientServiceFallBackFactory.class)
+
+//Feign的面向接口编程
+@FeignClient(value = "STUDY-SPRINGCLOUD-DEPT")
 public interface DeptClientService {
     @RequestMapping(value = "/dept/add",method = RequestMethod.GET)
     public boolean add( DeptEntity deptEntity);

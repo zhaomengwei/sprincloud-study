@@ -3,11 +3,8 @@ package com.gxs.springcloud.controller;
 import com.gxs.springcloud.entities.DeptEntity;
 import com.gxs.springcloud.service.DeptClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -18,8 +15,10 @@ import java.util.List;
  */
 @RestController
 public class DeptConsumerController {
+
     @Autowired
-    private DeptClientService deptClientService;
+    private DeptClientService deptClientService;//Feign面向接口编程
+
     @RequestMapping(value = "/consumer/dept/add")
     public boolean add( DeptEntity deptEntity){
         //三个参数：url,requestMap ResponseBean.class
