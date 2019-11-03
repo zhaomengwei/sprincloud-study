@@ -13,6 +13,7 @@
 
     <dependencies>
 
+        <!--config客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config</artifactId>

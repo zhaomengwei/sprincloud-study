@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author GongXings
  * @createTime 31 19:45
- * @description
+ * @description 从github上读取的yml文件的信息
  */
 @RestController
 public class ConfigClientRest {
