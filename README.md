@@ -51,9 +51,7 @@ spring-cloud-study
    
 3. 启动为服务消费者：
    > 以下两者二选一启动，它两主要区别（具体见笔记中第四小节）是：<br/>
-   >
    > dept-80：Ribbon+RestTemplate 调用Rest服务<br/>
-   >
    > dept-feign：Feign+接口 调用Rest服务（优雅简单）
    - [springcloud-study-consumer-dept-80 (含Ribbon客户端负载均衡)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-consumer-dept-80)
    - [springcloud-study-consumer-dept-feign (含Feign负载均衡、Hystrix服务降级)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-consumer-dept-feign)
@@ -61,7 +59,8 @@ spring-cloud-study
 4. Hystrix 服务熔断、降级、监控   
    > 服务熔断：<br/>
    > 	缺点就是每一个方法对应都得写一个fallBackMethod方法，代码膨胀，所以我们之后看服务降级(*^__^*)<br/>
-   >     主要在单个服务出异常的时候用
+   >     主要在单个服务出异常的时候用<br/>
+   > 
    > 服务降级：<br/>
    > 	统一处理主业务与熔断方法解耦，是在客户端（消费者）处理完成的，与服务端没关系<br/>
    >     主要在单个服务整个被关闭的时候用
