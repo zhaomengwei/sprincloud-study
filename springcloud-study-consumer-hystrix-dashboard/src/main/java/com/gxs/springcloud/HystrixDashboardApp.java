@@ -10,6 +10,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
  * @description
  */
 @SpringBootApplication
+//开启Hystrix服务监控，访问http://localhost:9001/hystrix
 @EnableHystrixDashboard
 public class HystrixDashboardApp {
     public static void main(String[] args) {
