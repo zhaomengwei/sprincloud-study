@@ -6,7 +6,7 @@
 
 - 项目fork自gongxings/spring-cloud-study，基于自己的理解又添加了修改
 
-![](images/springcloud架构图.png)
+![](/images/springcloud架构图.png)
 
 ## 项目版本
 
@@ -17,7 +17,7 @@
 
 ``` lua
 spring-cloud-study
-├── springcloud-study-api -- 构建公共子模块
+├── springcloud-study-api -- 构建公共子模块 + Hystrix服务降级
 ├── springcloud-study-euraka-7001 -- Eureka集群
 ├── springcloud-study-euraka-7002 -- Eureka集群
 ├── springcloud-study-euraka-7003 -- Eureka集群
@@ -25,15 +25,12 @@ spring-cloud-study
 ├── springcloud-study-provider-dept-8002 -- 构建服务提供者集群
 ├── springcloud-study-provider-dept-8003 -- 构建服务提供者集群
 ├── springcloud-study-consumer-dept-80 -- 构建服务消费者
-├── ribbon-service -- ribbon服务调用测试服务
-├── hystrix-service -- hystrix服务调用测试服务
-├── turbine-service -- 聚合收集hystrix实例监控信息的服务
-├── hystrix-dashboard -- 展示hystrix实例监控信息的仪表盘
-├── feign-service -- feign服务调用测试服务
-├── zuul-proxy -- zuul作为网关的测试服务
-├── config-server -- 配置中心服务
-├── config-security-server -- 带安全认证的配置中心服务
-└── config-client -- 获取配置的客户端服务
+├── springcloud-study-consumer-dept-feign -- 构建服务消费者
+├── springcloud-study-provider-dept-hystrix-8001 -- Hystrix服务熔断
+├── springcloud-study-consumer-hystrix-dashboard -- Hystrix调用监控 
+├── springcloud-study-zuul-gateway-9527 -- Zuul路由网关 
+├── springcloud-study-config-3344 -- config服务端 
+└── springcloud-study-config-client-3355 -- config客户端
 ```
 
 ## 项目搭建
@@ -53,5 +50,26 @@ spring-cloud-study
    - [springcloud-study-provider-dept-8003 (连03数据库)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-provider-dept-8003)
    
 3. 启动为服务消费者：
+   > 以下两者二选一启动，它两主要区别（具体见笔记中第四小节）是：
+   > 1. dept-80：Ribbon+RestTemplate 调用Rest服务
+   > 2. dept-feign：Feign+接口 调用Rest服务（优雅简单）
    - [springcloud-study-consumer-dept-80 (含Ribbon客户端负载均衡)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-consumer-dept-80)
+   - [springcloud-study-consumer-dept-feign (含Feign负载均衡、Hystrix服务降级)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-consumer-dept-feign)
    
+4. Hystrix 服务熔断、降级、监控   
+   > 服务熔断：
+   > ​	缺点就是每一个方法对应都得写一个fallBackMethod方法，代码膨胀，所以我们之后看服务降级(*^__^*)
+   > ​    主要在单个服务出异常的时候用
+   > 服务降级：
+   > ​	统一处理主业务与熔断方法解耦，是在客户端（消费者）处理完成的，与服务端没关系
+   > ​    主要在单个服务整个被关闭的时候用
+   - [springcloud-study-provider-dept-hystrix-8001 (Hystrix服务熔断)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-provider-dept-hystrix-8001)
+   - [springcloud-study-api (Hystrix服务降级)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-api)
+   - [springcloud-study-consumer-hystrix-dashboard (Hystrix调用监控)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-consumer-hystrix-dashboard)
+   
+5. Zuul 路由网关
+   - [springcloud-study-zuul-gateway-9527 (Zuul路由网关)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-zuul-gateway-9527)
+
+6. Config 分布式配置中心
+   - [springcloud-study-config-3344 (config服务端)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-config-3344)
+   - [springcloud-study-config-client-3355 (config客户端)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-config-client-3355)
