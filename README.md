@@ -70,7 +70,7 @@ spring-cloud-study
    
 5. Zuul 路由网关
    
-- [springcloud-study-zuul-gateway-9527 (Zuul路由网关)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-zuul-gateway-9527)
+   - [springcloud-study-zuul-gateway-9527 (Zuul路由网关)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-zuul-gateway-9527)
    
 6. Config 分布式配置中心
    - [springcloud-study-config-3344 (config服务端)](https://github.com/zpj80231/spring-cloud-study/tree/master/springcloud-study-config-3344)
